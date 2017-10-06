@@ -17,7 +17,7 @@ void DelX_NoHead(LinkList &L,ElemType x) {
         if(!L) return;
         if(L->data==x) {
                 p=L;
-                L = L->next;
+                L = L->next;//此语句会使引用的实参值改变,即表头被删
                 free(p);
                 DelX_NoHead(L,x);
         }
@@ -82,6 +82,7 @@ void Reverse(LinkList &L) {
                 curNode = tmp;//旧表的当前节点后移
         }
 }
+
 int main() {
         LinkList p = new LNode(7);
         int array[] = {6,8,5,6,2,3,4,2};
@@ -102,6 +103,6 @@ int main() {
         /*Reverse(p);
           p->print();*/
 
-        sort(p);
-          p->print();
+        /*sort(p);
+          p->print();*/
 }
