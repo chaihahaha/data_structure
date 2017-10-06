@@ -34,7 +34,7 @@ void R_print(LinkList &L) {
         rawPrint(L->next);//避开头节点
 }
 void DelMin(LinkList &L) {
-        //删除最小节点
+        //带头链表删除最小节点
         LNode * curNodePtr = L, * minNodePtr = L->next, *minPrePtr = L;
         while(curNodePtr->next) {
                 if(curNodePtr->next->data < minNodePtr->data) {
@@ -45,6 +45,30 @@ void DelMin(LinkList &L) {
         }
         minPrePtr->next = minNodePtr->next;//利用最小节点前指针删除最小节点
         free(minNodePtr);
+}
+LNode *DelMin_Ret(LinkList &L) {
+        //带头链表删除最小节点并返回最小节点地址
+        LNode * curNodePtr = L, * minNodePtr = L->next, *minPrePtr = L;
+        while(curNodePtr->next) {
+                if(curNodePtr->next->data < minNodePtr->data) {
+                        minNodePtr = curNodePtr->next;
+                        minPrePtr = curNodePtr;//最小节点指针和最小节点前指针更新
+                }
+                curNodePtr = curNodePtr->next;//当前指针后移
+        }
+        minPrePtr->next = minNodePtr->next;//利用最小节点前指针删除最小节点
+        minNodePtr->next = NULL;
+        return minNodePtr;
+}
+
+void sort(LinkList &L) {
+        LNode *q = L;//q指针的链表使用旧头,新表
+        LNode *p = new LNode(-1);//p指针的链表使用新头,旧表
+        p->next = L->next;
+        while(p->next) {
+                q->next = DelMin_Ret(p);//q破坏旧链表,p起到暂存旧链表作用
+                q = q->next;
+        }
 }
 void Reverse(LinkList &L) {
         //带头单链表就地逆置
@@ -64,17 +88,20 @@ int main() {
         p->arrayAdd(array);
         p->print();
 
-        cout<<endl;
+        /*cout<<endl;
         DelX_NoHead(p,2);
-          p->print();
+        p->print();*/
         
         //R_print(p);
         
-        cout<<endl;
+        cout<<"=============="<<endl;
 
         /*DelMin(p);
         p->print();*/
 
         /*Reverse(p);
           p->print();*/
+
+        sort(p);
+          p->print();
 }
