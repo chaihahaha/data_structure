@@ -13,9 +13,6 @@ void PostPrint(BinaryTree t) {//打印后序序列
                         p = s.GetTop();//如果这里前面加上BinaryTree声明语句会覆盖有效值
                         if(p->right && p->right != r) {
                                 p=p->right;
-                                s.Push(p);
-                                p = p->left;
-                                
                         }
                         else {                                
                                 cout<<s.Pop()->data<<" ";
