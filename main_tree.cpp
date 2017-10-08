@@ -5,4 +5,5 @@ int main() {
         BinaryTree t = new BTNode(a,b);
         t->PrePrint();
         t->InPrint();
+        t->Output();
 }

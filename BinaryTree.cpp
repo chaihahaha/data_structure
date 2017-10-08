@@ -25,10 +25,39 @@ public:
                 this->PrePrintOverLoad();
                 cout<<endl;
         }
+        void Output() {//打印树的图形,树根在最左侧
+                BTNode* root = this;
+                if (root->right)
+                        {
+                                output_impl(root->right, false, "");
+                        }
+                cout << root->data << endl;
+                if (root->left)
+                        {
+                                output_impl(root->left, true, "");
+                        }
+        }
+
         ElemType data;
         BTNode * left;
         BTNode * right;
 private:
+                void output_impl(BTNode* n, bool left, string const& indent)
+        {
+                if (n->right)
+                        {
+                                output_impl(n->right, false, indent + (left ? "|     " : "      "));
+                        }
+                cout << indent;
+                cout << (left ? '\\' : '/');
+                cout << "-----";
+                cout << n->data << endl;
+                if (n->left)
+                        {
+                                output_impl(n->left, true, indent + (left ? "      " : "|     "));
+                        }
+        }
+
         void PrePrintOverLoad() {
                 BTNode * p = this;
                 if(p) {
