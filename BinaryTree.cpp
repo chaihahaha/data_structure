@@ -37,7 +37,12 @@ public:
                                 output_impl(root->left, true, "");
                         }
         }
-
+        int DsonNodes() {
+                BTNode * b = this;
+                if(!b) return 0;
+                else if(b->left && b->right) return b->left->DsonNodes()+b->right->DsonNodes()+1;
+                else return b->left->DsonNodes()+b->right->DsonNodes();
+        }
         ElemType data;
         BTNode * left;
         BTNode * right;

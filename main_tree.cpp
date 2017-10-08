@@ -6,4 +6,5 @@ int main() {
         t->PrePrint();
         t->InPrint();
         t->Output();
+        cout<<"Nodes"<<t->DsonNodes()<<endl;
 }
