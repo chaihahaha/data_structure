@@ -11,7 +11,7 @@ public:
         }
         template<class T>
         BTNode(T &A,T &B) {//用先序序列A和中序序列B创建一整个树
-                BTNode * root = PreInCreateOverLoad(A,B,1,sizeof(A)/sizeof(A[0]) - 1,1,sizeof(B)/sizeof(B[0]) - 1);
+                BTNode * root = PreInCreateOverLoad(A,B,0,sizeof(A)/sizeof(A[0]) - 1,0,sizeof(B)/sizeof(B[0]) - 1);
                 this->data = root->data;
                 this->left = root->left;
                 this->right = root->right;
