@@ -37,7 +37,7 @@ public:
                                 output_impl(root->left, true, "");
                         }
         }
-        int DsonNodes() {
+        int DsonNodes() {//打印双分支结点数
                 BTNode * b = this;
                 if(!b) return 0;
                 else if(b->left && b->right) return b->left->DsonNodes()+b->right->DsonNodes()+1;
