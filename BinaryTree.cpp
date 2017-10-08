@@ -1,8 +1,9 @@
 #include<iostream>
 using namespace std;
-typedef int ElemType;
+
 class BTNode
 {
+        typedef int ElemType;
 public:
         BTNode(ElemType data) {//创建有给定值的树根
                 this->data = data;
@@ -79,7 +80,7 @@ private:
                         p->right->InPrintOverLoad();
                 }
         }
-        BTNode * PreInCreateOverLoad(ElemType A[], ElemType B[], int l1,int r1,int l2,int r2) {
+        BTNode * PreInCreateOverLoad(ElemType A[], ElemType  B[], int l1,int r1,int l2,int r2) {
                 BTNode *root = new BTNode(A[l1]);
                 int i = l2;
                 while(B[i] != root->data)

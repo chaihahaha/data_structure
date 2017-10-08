@@ -1,4 +1,31 @@
-#include "BinaryTree.cpp"
+#include "Stack.cpp"
+void PostPrint(BinaryTree t) {//打印后序序列
+        Stack s;
+        s.InitStack();
+        BinaryTree p = t;
+        BinaryTree r = NULL;
+        while(p||!s.IsEmpty()) {
+                if(p) {
+                        s.Push(p);
+                        p = p->left;
+                }
+                else {
+                        p = s.GetTop();//如果这里前面加上BinaryTree声明语句会覆盖有效值
+                        if(p->right && p->right != r) {
+                                p=p->right;
+                                s.Push(p);
+                                p = p->left;
+                                
+                        }
+                        else {                                
+                                cout<<s.Pop()->data<<" ";
+                                r=p;
+                                p = NULL;
+                        }
+                }
+        }
+}
+
 void Exchange(BinaryTree B) {
         if(B->left ||B->right) {
                 BinaryTree tmp = B->left;
@@ -15,6 +42,6 @@ int main() {
         t->PrePrint();
         t->InPrint();
         t->Output();
-        Exchange(t);
-        t->Output();
+        PostPrint(t);
+        cout<<endl;
 }
