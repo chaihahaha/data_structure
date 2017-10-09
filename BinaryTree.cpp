@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-
+#define MAX_SIZE 20
 class BTNode
 {
     typedef int ElemType;
@@ -37,6 +37,18 @@ public:
             {
                 output_impl(root->left, true, "");
             }
+    }
+    void LevelPrint() {
+        BTNode *q[MAX_SIZE];
+        BTNode *p;
+        int front=0,rear=0;
+        q[rear++] = this;
+        while(front<rear) {
+            p = q[front++];
+            cout<<p->data<<" ";
+            if(p->left) q[rear++] = p->left;
+            if(p->right) q[rear++] = p->right;
+        }
     }
     int DsonNodes() {//打印双分支结点数
         BTNode * b = this;

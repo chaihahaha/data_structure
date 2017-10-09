@@ -123,18 +123,21 @@ int main() {
     int a[] = {1,2,3,4,5,6,7,8,9};
     int b[] = {2,3,1,5,4,7,8,6,9};
     BinaryTree t = new BTNode(a,b);
-    t->PrePrint();
-    t->InPrint();
-    t->Output();
-    PostPrint(t);
+    //t->PrePrint();
+    //t->InPrint();
+    t->LevelPrint();
     cout<<endl;
+    t->Output();
+    //PostPrint(t);
+    cout<<endl;
+    
     //PostPrint_easy(t);
-    LinkLeaf(t);
-    BinaryTree head = t->left->right;
-    while(head) {
-        cout<<head->data<<" ";
-        head = head->right;
-    }
+    //LinkLeaf(t);
+    //BinaryTree head = t->left->right;
+    //while(head) {
+        //cout<<head->data<<" ";
+    //  head = head->right;
+    //}
     cout<<endl;
     //PrintAncester(t,7);
 }
