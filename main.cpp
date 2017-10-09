@@ -96,7 +96,6 @@ int main() {
     //R_print(p);
         
     cout<<"=============="<<endl;
-
     /*DelMin(p);
       p->print();*/
 
