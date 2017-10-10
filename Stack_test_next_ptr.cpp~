@@ -15,14 +15,21 @@ class Stack
 public:
     void InitStack() {
         this->top = NULL;
+        cout<<"top in init: "<<top<<endl;
     }
     void Push(ElemType x) {
-        StackNode * p = new StackNode();
-        p->data = x;
-        p->next = top;
-        top = p;
+        //StackNode * p = new StackNode();
+        StackNode p;
+        p.data = x;
+        p.next = top;
+        cout<<"nextptr in push: "<<p.next<<endl;
+        top = &p;
+        //p->data = x;
+        //p->next = top;
+        //top = p;
     }
     ElemType Pop() {
+        cout<<"nextptr in pop: "<<top->next<<endl;
         ElemType ret = top->data;
         top = top->next;
         return ret;
