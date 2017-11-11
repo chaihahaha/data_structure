@@ -1,0 +1,34 @@
+#include<iostream>
+#include "BinaryTree.cpp"
+using namespace std
+typedef struct{
+    BinaryTree data;
+    int tag;
+}Stack;
+typedef int ElemType;
+int Level(BinaryTree t, ElemType X) {
+    Stack stack[1000];
+    int top = 0;
+    BinaryTree p = t;
+    while(p || top > 0) {
+        if(p) {
+            stack[++top].data = p;
+            stack[top].tag = 0;
+        }
+        else {
+            p = stack[top].data;
+            if(p->right && stack[top].tag != 1) {
+                stack[top].tag = 1;
+                p = p->right;
+            }
+            else {
+                if(p->data == X) break;
+                else {
+                    top--;
+                    p = NULL;
+                }
+            }
+        }
+    }
+    return top;
+}
