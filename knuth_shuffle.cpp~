@@ -1,0 +1,25 @@
+#include<iostream>
+#include<stdio.h>
+#include<time.h>
+using namespace std;
+typedef int ElemType;
+int rand1_n(int n){
+    return rand()%n+1;
+}
+void knuth_shuffle(ElemType A[]) {
+    srand((unsigned)time(NULL));
+    for(int i = A[0]; i > 0; i--) {
+        int index=rand1_n(A[0]);
+        ElemType temp;
+        temp = A[i];
+        A[i] = A[index];
+        A[index] = temp;
+    }
+}
+int main(){
+    int A[11] = {10,1,2,3,4,5,6,7,8,9,10};
+    knuth_shuffle(A);
+    for(int i = 1; i <= A[0]; i++)
+        cout<<"  "<<A[i]<<"  "<<endl;
+}
+    

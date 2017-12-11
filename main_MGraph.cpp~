@@ -1,0 +1,4 @@
+#include "MGraph.cpp"
+int main(){
+    MGraph g=new MGraph(4,4);
+    

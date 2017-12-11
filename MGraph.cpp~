@@ -1,0 +1,12 @@
+#include<iostream>
+using namespace std;
+typedef int VRType;//顶点关系类型1/0 x/oo
+typedef int InfoType;//弧相关信息
+typedef int VertexType;//顶点类型
+
+class 
+{
+public:
+    ElemType data;
+    QueueNode * next;
+};
