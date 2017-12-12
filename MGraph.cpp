@@ -15,11 +15,12 @@ typedef ArcCell AdjMatrix[MAX_VERTEX_NUM][MAX_VERTEX_NUM];
 class MGraph
 {
 public:
+    int vexnum, arcnum;
     MGraph(int vexnum,int arcnum){
         this->vexnum=vexnum;
         this->arcnum=arcnum;
     }
-    void InitMGraph(VertexType vexs[],int arcs[4][4]) {
+    void InitMGraph(VertexType vexs[],int** arcs) {
         for(int i = 0; i < this->vexnum; i++) {
             this->vexs[i]=vexs[i];
         }
@@ -29,7 +30,7 @@ public:
             }
         }
     }
-    void InitMGraph(int arcs[4][4]) {
+    void InitMGraph(int** arcs) {
         for(int i = 0; i < this->vexnum; i++) {
             for(int j = 0; j < this->vexnum; j++) {
                 this->arcs[i][j].adj=arcs[i][j];
@@ -37,7 +38,7 @@ public:
         }
     }
     GraphKind kind;
-    int vexnum, arcnum;
+
     AdjMatrix arcs;
     VertexType  vexs[MAX_VERTEX_NUM];
 };
