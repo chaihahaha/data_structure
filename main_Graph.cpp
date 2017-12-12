@@ -43,6 +43,37 @@ void DFS(ALGraph *g,int vi){
         else
             p = stack[top--]->nextarc;
     }
+    cout<<endl;
+}
+void AllPaths(ALGraph *g,int vi,int vj){
+    //从vi顶点到vj开始进行深度优先遍历，求出所有路径
+    ArcNode * stack[g->arcnum];
+    int top=0;
+    bool visited[g->vexnum];
+    for(int i=0; i < g->vexnum; i++) visited[i]=false;
+    ArcNode *p=g->vertices[vi]->firstarc;
+    visited[vi]=true;
+    visited[vj]=true;
+    while(p||top>0) {
+        if(p) {
+            if(p->adjvex==vj){
+                int i=0;
+                for(;i < top; i++) {
+                    cout<<stack[i]->adjvex<<"  ";
+                }
+                if(i>0) cout<<vj<<endl;
+            }
+            if(!visited[p->adjvex]) {
+                visited[p->adjvex]=true;
+                stack[++top]=p;
+                p=g->vertices[p->adjvex]->firstarc;
+            }
+            else
+                p = p->nextarc;
+        }
+        else
+            p = stack[top--]->nextarc;
+    }
 }
 int main(){
     MGraph* g=new MGraph(6,10);
@@ -53,7 +84,7 @@ int main(){
         }
     }
     int *arcs[6];
-    int temp[][6]={{0,1,0,0,1,0},{0,0,1,1,1,1},{0,1,0,1,0,1},{1,0,1,0,1,0},{1,1,0,1,0,1},{0,1,1,0,1,0}};
+    int temp[][6]={{0,1,1,0,1,0},{1,0,1,1,1,1},{0,1,0,1,1,1},{1,1,1,0,1,0},{1,1,0,1,0,1},{0,1,1,0,1,0}};
     arcs[0]=temp[0];
     arcs[1]=temp[1];
     arcs[2]=temp[2];
@@ -71,5 +102,6 @@ int main(){
     ALGraph * g_al= new ALGraph(6,10);
     MGraph2ALGraph(g,g_al);
     DFS(g_al,0);
+    AllPaths(g_al,0,2);
     return 0;
 }
