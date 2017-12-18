@@ -34,4 +34,3 @@ public:
     LNode *next;
 };
 typedef LNode *LinkList;
-

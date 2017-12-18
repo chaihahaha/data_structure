@@ -1,33 +1,32 @@
 #include "MGraph.cpp"
 #include "ALGraph.cpp"
-void MGraph2ALGraph(MGraph &g1,ALGraph &g2){
+void MGraph2ALGraph(MGraph* g1,ALGraph* g2){
     //把邻接矩阵表示的图g1转为邻接表表示
-    for(int i = 0; i < g1.vexnum; i++){
+    for(int i = 0; i < g1->vexnum; i++){
         VNode* p = new VNode();
-        p->data=g1.vexs[i];
+        p->data=g1->vexs[i];
         p->firstarc=NULL;
-        g2.vertices[i]=p;
+        g2->vertices[i]=p;
     }
-    for(int i = 0; i< g1.vexnum; i++) {
-        for(int j = 0; j < g1.vexnum; j++) {
-            if(g1.arcs[i][j].adj==1) {
+    for(int i = 0; i< g1->vexnum; i++) {
+        for(int j = 0; j < g1->vexnum; j++) {
+            if(g1->arcs[i][j].adj==1) {
                 ArcNode* arc = new ArcNode();
                 arc->adjvex=j;
-                arc->nextarc = g2.vertices[i]->firstarc;
+                arc->nextarc = g2->vertices[i]->firstarc;
                 arc->info=NULL;
-                g2.vertices[i]->firstarc=arc;
-                cout<<"Adding Arc: "<<i<<" -> "<<g2.vertices[i]->firstarc->adjvex<<endl;//删除这个语句后不能正常生成邻接表，为什么？
+                g2->vertices[i]->firstarc=arc;
             }
         }
     }
 }
-void DFS(ALGraph &g,int vi){
+void DFS(ALGraph *g,int vi){
     //从vi顶点开始进行深度优先遍历
-    ArcNode * stack[g.arcnum];
+    ArcNode * stack[g->arcnum];
     int top=0;
-    bool visited[g.vexnum];
-    for(int i=0; i < g.vexnum; i++) visited[i]=false;
-    ArcNode *p=g.vertices[vi]->firstarc;
+    bool visited[g->vexnum];
+    for(int i=0; i < g->vexnum; i++) visited[i]=false;
+    ArcNode *p=g->vertices[vi]->firstarc;
     cout<<vi<<"  ";
     visited[vi]=true;    
     while(p||top>0) {
@@ -36,7 +35,7 @@ void DFS(ALGraph &g,int vi){
                 cout<<p->adjvex<<"  ";
                 visited[p->adjvex]=true;
                 stack[++top]=p;
-                p=g.vertices[p->adjvex]->firstarc;
+                p=g->vertices[p->adjvex]->firstarc;
             }
             else
                 p = p->nextarc;
@@ -46,13 +45,13 @@ void DFS(ALGraph &g,int vi){
     }
     cout<<endl;
 }
-void AllPaths(ALGraph &g,int vi,int vj){
+void AllPaths(ALGraph *g,int vi,int vj){
     //从vi顶点到vj开始进行深度优先遍历，求出所有路径
-    ArcNode * stack[g.arcnum];
+    ArcNode * stack[g->arcnum];
     int top=0;
-    bool visited[g.vexnum];
-    for(int i=0; i < g.vexnum; i++) visited[i]=false;
-    ArcNode *p=g.vertices[vi]->firstarc;
+    bool visited[g->vexnum];
+    for(int i=0; i < g->vexnum; i++) visited[i]=false;
+    ArcNode *p=g->vertices[vi]->firstarc;
     visited[vi]=true;
     visited[vj]=true;
     while(p||top>0) {
@@ -63,12 +62,11 @@ void AllPaths(ALGraph &g,int vi,int vj){
                     cout<<stack[i]->adjvex<<"  ";
                 }
                 if(i>0) cout<<vj<<endl;
-                
             }
             if(!visited[p->adjvex]) {
                 visited[p->adjvex]=true;
                 stack[++top]=p;
-                p=g.vertices[p->adjvex]->firstarc;
+                p=g->vertices[p->adjvex]->firstarc;
             }
             else
                 p = p->nextarc;
@@ -78,11 +76,11 @@ void AllPaths(ALGraph &g,int vi,int vj){
     }
 }
 int main(){
-    MGraph g(6,10);
-    for(int i = 0; i < g.vexnum; i++) {
-        g.vexs[i] = i;
-        for(int j = 0; j < g.vexnum; j++) {
-            g.arcs[i][j].adj = 1;
+    MGraph* g=new MGraph(6,10);
+    for(int i = 0; i < g->vexnum; i++) {
+        g->vexs[i] = i;
+        for(int j = 0; j < g->vexnum; j++) {
+            g->arcs[i][j].adj = 1;
         }
     }
     int *arcs[6];
@@ -94,14 +92,14 @@ int main(){
     arcs[4]=temp[4];
     arcs[5]=temp[5];
     int vexs[6]={0,1,2,3,4,5};
-    g.InitMGraph(vexs,arcs);
-    for(int i = 0; i < g.vexnum; i++) {
-        for(int j = 0; j < g.vexnum; j++) {
-            cout<<g.arcs[i][j].adj<<"  ";
+    g->InitMGraph(vexs,arcs);
+    for(int i = 0; i < g->vexnum; i++) {
+        for(int j = 0; j < g->vexnum; j++) {
+            cout<<g->arcs[i][j].adj<<"  ";
         }
         cout<<endl;
     }
-    ALGraph g_al(6,10);
+    ALGraph * g_al= new ALGraph(6,10);
     MGraph2ALGraph(g,g_al);
     DFS(g_al,0);
     AllPaths(g_al,0,2);
