@@ -93,7 +93,7 @@ private:
         }
     }
     BTNode * PreInCreateOverLoad(ElemType A[], ElemType  B[], int l1,int r1,int l2,int r2) {
-        BTNode *root = new BTNode(A[l1]);
+        BTNode *root=new BTNode(A[l1]);
         int i = l2;
         while(B[i] != root->data)
             i++;

@@ -1,6 +1,6 @@
 #include "Stack.cpp"
 typedef int ElemType;
-void PostPrint(BinaryTree t) {//打印后序序列
+void PostPrint(BinaryTree &t) {//打印后序序列
     Stack s;
     s.InitStack();
     BinaryTree p = t;
@@ -23,7 +23,7 @@ void PostPrint(BinaryTree t) {//打印后序序列
         }
     }
 }
-void PrintAncester(BinaryTree t,ElemType x ) {//打印给定结点值的所有祖先
+void PrintAncester(BinaryTree &t,ElemType x ) {//打印给定结点值的所有祖先
     Stack s;
     s.InitStack();
     BinaryTree p = t;
@@ -54,7 +54,7 @@ typedef struct{
         BinaryTree tree;
         int tag;
 }stack;
-void PostPrint_easy(BinaryTree t) {//打印后序序列
+void PostPrint_easy(BinaryTree &t) {//打印后序序列
     stack s[10];
     int top = 0;
     BinaryTree p = t;
@@ -78,7 +78,7 @@ void PostPrint_easy(BinaryTree t) {//打印后序序列
         }
     }
 }
-void LinkLeaf(BinaryTree t) {//把叶结点连在一起
+void LinkLeaf(BinaryTree &t) {//把叶结点连在一起
     stack s[10],d[10];
     int top = 0,top1 = 0;
     BinaryTree p = t;
@@ -110,7 +110,7 @@ void LinkLeaf(BinaryTree t) {//把叶结点连在一起
         p = p->right;
     }
 }
-void Exchange(BinaryTree B) {
+void Exchange(BinaryTree &B) {
     if(B->left ||B->right) {
         BinaryTree tmp = B->left;
         B->left = B->right;
@@ -122,22 +122,22 @@ void Exchange(BinaryTree B) {
 int main() {
     int a[] = {1,2,3,4,5,6,7,8,9};
     int b[] = {2,3,1,5,4,7,8,6,9};
-    BinaryTree t = new BTNode(a,b);
-    //t->PrePrint();
-    //t->InPrint();
+    BinaryTree  t=new BTNode(a,b);
+    t->PrePrint();
+    t->InPrint();
     t->LevelPrint();
     cout<<endl;
     t->Output();
-    //PostPrint(t);
+    PostPrint(t);
     cout<<endl;
     
-    //PostPrint_easy(t);
-    //LinkLeaf(t);
-    //BinaryTree head = t->left->right;
-    //while(head) {
-        //cout<<head->data<<" ";
-    //  head = head->right;
-    //}
+    PostPrint_easy(t);
+    LinkLeaf(t);
+    BinaryTree head = t->left->right;
+    while(head) {
+    cout<<head->data<<" ";
+     head = head->right;
+    }
     cout<<endl;
-    //PrintAncester(t,7);
+    PrintAncester(t,7);
 }

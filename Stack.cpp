@@ -1,36 +1,36 @@
 #include<iostream>
-//#include "BinaryTree.cpp"
+#include "BinaryTree.cpp"
 using namespace std;
 
 class StackNode
 {
-    typedef int ElemType;
+    typedef BinaryTree StackNodeElemType;
 public:
-    ElemType data;
+    StackNodeElemType data;
     StackNode * next;
 };
 class Stack
 {
-    typedef int ElemType;
+    typedef BinaryTree StackNodeElemType;
 public:
     void InitStack() {
         this->top = NULL;
     }
-    void Push(ElemType x) {
+    void Push(StackNodeElemType x) {
         StackNode * p = new StackNode();
         p->data = x;
         p->next = top;
         top = p;
     }
-    ElemType Pop() {
-        ElemType ret = top->data;
+    StackNodeElemType Pop() {
+        StackNodeElemType ret = top->data;
         top = top->next;
         return ret;
     }
     bool IsEmpty() {
         return !top;
     }
-    ElemType GetTop() {
+    StackNodeElemType GetTop() {
         return top->data;
     }
     StackNode * top;
