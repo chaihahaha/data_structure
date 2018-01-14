@@ -1,7 +1,0 @@
-void EvenOddSort(int[] A){
-    int i=1,j=A[0];
-    while(i<j) {
-        A[0]=A[i];
-        while(A[j]%2==1 && i<j) j--;
-        if(i<j) { A[i]=A[j]; i++; }
-        

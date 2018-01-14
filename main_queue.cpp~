@@ -1,6 +1,0 @@
-#include "Queue.cpp"
-int main() {
-        Queue a = new Queue();
-        a.EnQueue(2);
-        a.EnQueue(3);
-}
