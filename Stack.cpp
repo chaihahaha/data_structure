@@ -1,17 +1,15 @@
 #include<iostream>
 #include "BinaryTree.cpp"
 using namespace std;
-
+typedef BinaryTree StackNodeElemType;
 class StackNode
 {
-    typedef BinaryTree StackNodeElemType;
 public:
     StackNodeElemType data;
     StackNode * next;
 };
 class Stack
 {
-    typedef BinaryTree StackNodeElemType;
 public:
     void InitStack() {
         this->top = NULL;
